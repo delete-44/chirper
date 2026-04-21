@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Chirp;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ChirpController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -79,7 +82,6 @@ class ChirpController extends Controller
         $chirp->update($validated);
 
         return redirect('/')->with('success', 'Chirp updated!');
-
     }
 
     /**
@@ -92,6 +94,5 @@ class ChirpController extends Controller
         $chirp->delete();
 
         return redirect('/')->with('success', 'Chirp deleted');
-
     }
 }
