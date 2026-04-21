@@ -6,7 +6,7 @@ use App\Models\Chirp;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreChirpRequest extends FormRequest
+class StoreChirpRequest extends BaseChirpRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,25 +14,5 @@ class StoreChirpRequest extends FormRequest
     public function authorize(): bool
     {
         return auth()->user()->can('create', Chirp::class);
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
-    {
-        return [
-            'message' => 'required|string|max:255'
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'message.required' => 'Please write something to chirp!',
-            'message.max' => 'Chirps must be 255 characters or less'
-        ];
     }
 }
