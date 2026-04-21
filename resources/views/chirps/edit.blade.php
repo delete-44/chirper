@@ -19,7 +19,7 @@
 
             @error('message')
               <div class="label">
-                <span class="label-text-alt text-error">{{ $message }}</span>
+                <span class="label-text-alt text-red-600">{{ $message }}</span>
               </div>
             @enderror
           </div>

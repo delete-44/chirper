@@ -10,12 +10,12 @@
       <div class="form-control mt-4 w-full">
         <label class="text-gray-600 text-sm" for="message">Chirp at us</label>
         <textarea name="message" placeholder="Whats on your mind?"
-          class="textarea textarea-bordered w-full resize-none mt-1" rows="4" maxlength="255"
-          required>{{ old('message') }}</textarea>
+          class="textarea textarea-bordered w-full resize-none mt-1 @error('message') textarea-error @enderror" rows="4"
+          maxlength="255" required>{{ old('message') }}</textarea>
 
         @error('message')
           <div class="label">
-            <span class="label-text-alt text-error">{{ $message }}</span>
+            <span class="label-text-alt text-red-600">{{ $message }}</span>
           </div>
         @enderror
       </div>
