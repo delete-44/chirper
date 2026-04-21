@@ -25,6 +25,10 @@
             <span class="text-sm font-semibold">{{ $chirp->user ? $chirp->user->name : 'Anonymous' }}</span>
             <span class="text-gray-500">&middot;</span>
             <small class="text-xs text-gray-500">{{ $chirp->created_at->diffForHumans() }}</small>
+            @if ($chirp->updated_at->gt($chirp->created_at->addSeconds(5)))
+              <span class="text-gray-500">&middot;</span>
+              <small class="text-cs text-gray-500 italic">edited</small>
+            @endif
           </div>
 
           <div class="flex gap-2">
