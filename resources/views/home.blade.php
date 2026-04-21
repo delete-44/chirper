@@ -10,9 +10,7 @@
       <div class="form-control mt-4 w-full">
         <label class="text-gray-500 text-sm" for="message">Chirp at us</label>
         <textarea name="message" placeholder="Whats on your mind?" class="textarea textarea-bordered w-full resize-none"
-          rows="4" maxlength="255" required>
-          {{ old('message') }}
-        </textarea>
+          rows="4" maxlength="255" required>{{ old('message') }}</textarea>
 
         @error('message')
           <div class="label">
