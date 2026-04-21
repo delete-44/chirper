@@ -1,32 +1,19 @@
 <x-layout>
   <x-slot:title>
-    Register
+    Login
   </x-slot:title>
 
   <div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold">Create Account</h1>
+    <h1 class="text-3xl font-bold">Login</h1>
 
-    <form method="POST" action="/register">
+    <form method="POST" action="/login">
       @csrf
-
-      <!-- Name -->
-      <div class="form-control mt-6 flex flex-col">
-        <label class="text-sm text-gray-600" for="name">Name</label>
-        <input type="text" name="name" placeholder="John Doe" value="{{ old('name') }}"
-          class="input input-bordered @error('name') border-red-600 @enderror" required />
-
-        @error('name')
-          <div class="label">
-            <span class="label-text-alt text-red-600">{{ $message }}</span>
-          </div>
-        @enderror
-      </div>
 
       <!-- Email -->
       <div class="form-control mt-6 flex flex-col">
         <label class="text-sm text-gray-600" for="email">Email</label>
         <input type="email" name="email" placeholder="mail@example.com" value="{{ old('email') }}"
-          class="input input-bordered @error('email') border-red-600 @enderror" required />
+          class="input input-bordered @error('email') border-red-600 @enderror" required autofocus />
 
         @error('email')
           <div class="label">
@@ -48,25 +35,26 @@
         @enderror
       </div>
 
-      <!-- Password Confirmation -->
-      <div class="form-control mt-6 flex flex-col">
-        <label class="text-sm text-gray-600" for="password_confirmation">Confirm Password</label>
-        <input type="password" name="password_confirmation" placeholder="••••••••"
-          class="input input-bordered @error('password') border-red-600 @enderror" required />
+      <!-- Remember Me -->
+      <div class="form-control mt-4">
+        <label class="label cursor-pointer justify-start">
+          <input type="checkbox" name="remember">
+          <span class="ml-2 text-sm text-gray-600">Remember me</span>
+        </label>
       </div>
 
       <!-- Submit Button -->
       <div class="mt-8">
         <button type="submit" class="btn btn-primary btn-sm">
-          Register
+          Login
         </button>
       </div>
     </form>
 
     <div class="divider">OR</div>
     <p class="text-center text-sm">
-      Already have an account?
-      <a href="{{ route('login') }}" class="link link-primary">Sign in</a>
+      Don't have an account?
+      <a href="{{ route('register') }}" class="link link-primary">Register now</a>
     </p>
   </div>
 </x-layout>

@@ -8,9 +8,10 @@
     <form method="POST" action="/chirps">
       @csrf
       <div class="form-control mt-4 w-full">
-        <label class="text-gray-500 text-sm" for="message">Chirp at us</label>
-        <textarea name="message" placeholder="Whats on your mind?" class="textarea textarea-bordered w-full resize-none"
-          rows="4" maxlength="255" required>{{ old('message') }}</textarea>
+        <label class="text-gray-600 text-sm" for="message">Chirp at us</label>
+        <textarea name="message" placeholder="Whats on your mind?"
+          class="textarea textarea-bordered w-full resize-none mt-1" rows="4" maxlength="255"
+          required>{{ old('message') }}</textarea>
 
         @error('message')
           <div class="label">
