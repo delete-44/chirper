@@ -23,28 +23,30 @@
         <div class="flex items-center justify-between gap-2 w-full">
           <div class="flex items-center gap-2">
             <span class="text-sm font-semibold">{{ $chirp->user ? $chirp->user->name : 'Anonymous' }}</span>
-            <span class="text-gray-500">&middot;</span>
-            <small class="text-xs text-gray-500">{{ $chirp->created_at->diffForHumans() }}</small>
+            <span class="text-gray-600">&middot;</span>
+            <small class="text-xs text-gray-600">{{ $chirp->created_at->diffForHumans() }}</small>
             @if ($chirp->updated_at->gt($chirp->created_at->addSeconds(5)))
-              <span class="text-gray-500">&middot;</span>
-              <small class="text-cs text-gray-500 italic">edited</small>
+              <span class="text-gray-600">&middot;</span>
+              <small class="text-cs text-gray-600 italic">edited</small>
             @endif
           </div>
 
-          <div class="flex gap-2">
-            <a href="/chirps/{{ $chirp->id }}/edit" class="btn btn-ghost btn-xs">
-              Edit
-            </a>
+          @can('update', $chirp)
+            <div class="flex gap-2">
+              <a href="/chirps/{{ $chirp->id }}/edit" class="btn btn-ghost btn-xs">
+                Edit
+              </a>
 
-            <form method="POST" action="/chirps/{{ $chirp->id }}">
-              @csrf
-              @method('DELETE')
-              <button type="submit" onclick="return confirm('Are you sure you want to delete this chirp?')"
-                class="btn btn-ghost btn-xs text-red-600">
-                Delete
-              </button>
-            </form>
-          </div>
+              <form method="POST" action="/chirps/{{ $chirp->id }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this chirp?')"
+                  class="btn btn-ghost btn-xs text-red-600">
+                  Delete
+                </button>
+              </form>
+            </div>
+          @endcan
         </div>
 
         <p class="text-gray-900">
