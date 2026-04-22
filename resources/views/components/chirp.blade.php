@@ -1,7 +1,7 @@
 @props(['chirp'])
 
-<div class="grow py-5 relative">
-  <div class="absolute h-full border-l border-gray-300 border-dashed left-4"></div>
+<div class="grow pt-5 relative" x-data="{ showReplyForm: false }">
+  <div class=" absolute h-full border-l border-gray-300 border-dashed left-4"></div>
 
   <div class="flex space-x-3">
     @if($chirp->user)
@@ -53,6 +53,33 @@
       <p class="text-gray-900">
         {{ $chirp->message }}
       </p>
+
+      <button @click="showReplyForm = !showReplyForm" x-show="!showReplyForm"
+        class="btn btn-xs border border-gray-300 mt-4">
+        Reply
+      </button>
+
+      <div x-show="showReplyForm" class="mt-2">
+        <form method="POST" action="/chirps">
+          @csrf
+          <input type="hidden" name="chirp_id" value="{{ $chirp->id }}">
+
+          <label class="text-gray-600 text-sm" for="message">Write your reply</label>
+          <textarea name="message" placeholder="Whats on your mind?"
+            class="textarea textarea-bordered w-full resize-none mt-1 @error('message') textarea-error @enderror"
+            rows="4" maxlength="255" required>{{ old('message') }}</textarea>
+
+          <div class="flex gap-2 mt-2">
+            <button type="submit" class="btn btn-primary btn-sm">
+              Reply
+            </button>
+
+            <button type="button" @click="showReplyForm = false" class="btn btn-sm">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

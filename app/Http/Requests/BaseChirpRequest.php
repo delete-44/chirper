@@ -23,7 +23,8 @@ class BaseChirpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'message' => 'required|string|max:255'
+            'message' => 'required|string|max:255',
+            'chirp_id' => 'integer'
         ];
     }
 

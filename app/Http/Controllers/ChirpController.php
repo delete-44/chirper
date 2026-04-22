@@ -38,7 +38,8 @@ class ChirpController extends Controller
         $validated = $request->validated();
 
         auth()->user()->chirps()->create([
-            'message' => $validated['message']
+            'message' => $validated['message'],
+            'chirp_id' => $validated['chirp_id']
         ]);
 
         return redirect('/')->with('success', 'Chirp posted!');
