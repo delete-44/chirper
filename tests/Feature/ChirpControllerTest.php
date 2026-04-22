@@ -5,6 +5,9 @@ use App\Models\User;
 
 test('index', function () {
     $chirps = Chirp::factory()->count(3)->create();
+    $replyChirp = Chirp::factory()->create([
+        'chirp_id' => $chirps[0]->id
+    ]);
 
     $response = $this->actingAsGuest()->get('/');
 
@@ -13,6 +16,17 @@ test('index', function () {
     foreach ($chirps as $chirp) {
         $response->assertSeeText($chirp->message);
     }
+
+    $viewChirps = $response->viewData('chirps');
+
+    // Assert only the original 3 chirps are returned by controller...
+    $this->assertCount(3, $viewChirps);
+    $this->assertTrue($viewChirps->contains($chirps[0]));
+    $this->assertTrue($viewChirps->contains($chirps[1]));
+    $this->assertTrue($viewChirps->contains($chirps[2]));
+
+    // But reply is rendered in UI
+    $response->assertSeeText(($replyChirp->message));
 });
 
 describe('#store', function () {
