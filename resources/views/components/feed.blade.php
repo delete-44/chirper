@@ -6,7 +6,7 @@
       <div></div>
     @endfor
 
-    <x-chirp :chirp="$chirp" :depth="$depth" />
+    <x-chirp :chirp="$chirp" />
   </section>
 
   @if ($chirp->hasReplies())

@@ -1,4 +1,4 @@
-@props(['chirp', 'depth'])
+@props(['chirp'])
 
 <div class="grow py-5 relative">
   <div class="absolute h-full border-l border-gray-300 border-dashed left-4"></div>
@@ -33,16 +33,16 @@
         </div>
 
         @can('update', $chirp)
-          <div class="flex gap-2">
-            <a href="/chirps/{{ $chirp->id }}/edit" class="btn btn-ghost btn-xs">
+          <div class="flex gap-1">
+            <a href="/chirps/{{ $chirp->id }}/edit" class="btn btn-xs">
               Edit
             </a>
 
-            <form method="POST" action="/chirps/{{ $chirp->id }}">
+            <form method="POST" action="/chirps/{{ $chirp->id }}" class="contents">
               @csrf
               @method('DELETE')
               <button type="submit" onclick="return confirm('Are you sure you want to delete this chirp?')"
-                class="btn btn-ghost btn-xs text-red-600">
+                class="btn btn-xs text-red-600">
                 Delete
               </button>
             </form>
