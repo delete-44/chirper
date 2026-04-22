@@ -17,7 +17,7 @@ class ChirpController extends Controller
      */
     public function index()
     {
-        $chirps = Chirp::with('user')->latest()->take(50)->get();
+        $chirps = Chirp::with('user')->latest()->where('chirp_id', null)->take(50)->get();
 
         return view("home", ['chirps' => $chirps]);
     }

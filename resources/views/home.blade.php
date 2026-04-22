@@ -26,10 +26,7 @@
         </button>
       </div>
     </form>
-    @forelse ($chirps as $chirp)
-      <x-chirp :chirp="$chirp" />
-    @empty
-      <p class="text-gray-400">No chirps yet. Be the first to chirp!</p>
-    @endforelse
+
+    <x-feed :chirps="$chirps" :depth="0"></x-feed>
   </div>
 </x-layout>

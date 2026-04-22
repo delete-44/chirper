@@ -29,4 +29,9 @@ class Chirp extends Model
     {
         return $this->hasMany(Chirp::class);
     }
+
+    public function hasReplies(): bool
+    {
+        return !$this->replies->isEmpty();
+    }
 }
