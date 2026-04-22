@@ -21,6 +21,7 @@ class ChirpFactory extends Factory
         return [
             'message' => fake()->text(155),
             'user_id' => User::factory(),
+            'chirp_id' => null
         ];
     }
 }

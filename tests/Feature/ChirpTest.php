@@ -41,6 +41,25 @@ describe('#store', function () {
 
         $this->assertDatabaseCount('chirps', 1);
     });
+
+    test('store completes when user is replying to an existing chirp', function () {
+        $user = User::factory()->create();
+        $chirp = Chirp::factory()->create();
+
+        $response = $this->actingAs($user)->post('/chirps', [
+            'message' => 'Test message',
+            'chirp_id' => $chirp->id
+        ]);
+
+        $response->assertRedirect('/');
+
+        $this->assertDatabaseHas('chirps', [
+            'message' => 'Test message',
+            'chirp_id' => $chirp->id
+        ]);
+
+        $this->assertDatabaseCount('chirps', 2);
+    });
 });
 
 describe('#update', function () {
