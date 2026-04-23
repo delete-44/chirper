@@ -12,7 +12,7 @@ test('hasReplies returns false when chirp has no replies', function () {
 
 test('hasReplies returns true when chirp has replies', function () {
   $chirp = Chirp::factory()->create();
-  Chirp::factory()->create(['chirp_id' => $chirp->id]);
+  Chirp::factory()->create(['parent_id' => $chirp->id]);
 
   assertTrue($chirp->hasReplies());
 });

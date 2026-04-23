@@ -17,7 +17,7 @@ class ChirpController extends Controller
      */
     public function index()
     {
-        $chirps = Chirp::with('user')->latest()->where('chirp_id', null)->take(50)->get();
+        $chirps = Chirp::with('user')->latest()->where('parent_id', null)->take(50)->get();
 
         return view("home", ['chirps' => $chirps]);
     }
@@ -39,7 +39,7 @@ class ChirpController extends Controller
 
         auth()->user()->chirps()->create([
             'message' => $validated['message'],
-            'chirp_id' => $validated['chirp_id'] ?? null
+            'parent_id' => $validated['parent_id'] ?? null
         ]);
 
         return redirect('/')->with('success', 'Chirp posted!');

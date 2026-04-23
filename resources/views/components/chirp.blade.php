@@ -62,7 +62,7 @@
       <div x-show="showReplyForm" class="mt-2">
         <form method="POST" action="/chirps">
           @csrf
-          <input type="hidden" name="chirp_id" value="{{ $chirp->id }}">
+          <input type="hidden" name="parent_id" value="{{ $chirp->id }}">
 
           <label class="text-gray-600 text-sm" for="message">Write your reply</label>
           <textarea name="message" placeholder="Whats on your mind?"

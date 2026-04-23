@@ -24,7 +24,7 @@ class BaseChirpRequest extends FormRequest
     {
         return [
             'message' => 'required|string|max:255',
-            'chirp_id' => 'integer'
+            'parent_id' => 'integer'
         ];
     }
 

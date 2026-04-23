@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['message', 'chirp_id'])]
+#[Fillable(['message', 'parent_id'])]
 
 class Chirp extends Model
 {
@@ -27,7 +27,7 @@ class Chirp extends Model
 
     public function replies(): HasMany
     {
-        return $this->hasMany(Chirp::class);
+        return $this->hasMany(Chirp::class, 'parent_id');
     }
 
     public function hasReplies(): bool

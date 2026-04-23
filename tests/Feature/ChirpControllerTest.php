@@ -6,7 +6,7 @@ use App\Models\User;
 test('index', function () {
     $chirps = Chirp::factory()->count(3)->create();
     $replyChirp = Chirp::factory()->create([
-        'chirp_id' => $chirps[0]->id
+        'parent_id' => $chirps[0]->id
     ]);
 
     $response = $this->actingAsGuest()->get('/');
@@ -62,14 +62,14 @@ describe('#store', function () {
 
         $response = $this->actingAs($user)->post('/chirps', [
             'message' => 'Test message',
-            'chirp_id' => $chirp->id
+            'parent_id' => $chirp->id
         ]);
 
         $response->assertRedirect('/');
 
         $this->assertDatabaseHas('chirps', [
             'message' => 'Test message',
-            'chirp_id' => $chirp->id
+            'parent_id' => $chirp->id
         ]);
 
         $this->assertDatabaseCount('chirps', 2);
