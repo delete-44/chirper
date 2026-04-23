@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreChirpRequest;
 use App\Http\Requests\UpdateChirpRequest;
 use App\Models\Chirp;
+use Arr;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -17,7 +18,7 @@ class ChirpController extends Controller
      */
     public function index()
     {
-        $chirps = Chirp::with('user')->latest()->take(50)->get();
+        $chirps = Chirp::with('user', 'replies')->latest()->where('parent_id', null)->take(50)->get();
 
         return view("home", ['chirps' => $chirps]);
     }
@@ -38,7 +39,8 @@ class ChirpController extends Controller
         $validated = $request->validated();
 
         auth()->user()->chirps()->create([
-            'message' => $validated['message']
+            'message' => $validated['message'],
+            'parent_id' => Arr::get($validated, 'parent_id')
         ]);
 
         return redirect('/')->with('success', 'Chirp posted!');

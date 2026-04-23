@@ -4,7 +4,7 @@ This is a trial project built (mostly) following the official [Laravel](https://
 
 - CI pipeline added with GitHub actions
 - Tests for critical actions added using PHPUnit
-- Threaded replies (pending https://github.com/delete-44/chirper/pull/7)
+- Threaded replies
 
 These have been done to challenge & demonstrate my PHP learning.
 
