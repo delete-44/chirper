@@ -32,6 +32,6 @@ class Chirp extends Model
 
     public function hasReplies(): bool
     {
-        return !$this->replies->isEmpty();
+        return $this->replies()->count() > 0;
     }
 }
